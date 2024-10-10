@@ -1,9 +1,9 @@
 body {
-  background-color: #72ef04;
-  color: navy;
+  background-color: black;
+  color: white;
 }
 a:link {
-  color: #ff0055;
+  color: #skyblue;
   text-decoration: none; /* 링크의 밑줄을 없앤다. 이는 body 태그의 자체 속성으로는 불가능하다. */
 }
 a:visited {
