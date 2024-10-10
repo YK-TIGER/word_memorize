@@ -1,0 +1,22 @@
+body {
+  background-color: #5Ed2b4;
+  color: navy;
+}
+a:link {
+  color: #ff0055;
+  text-decoration: none; /* 링크의 밑줄을 없앤다. 이는 body 태그의 자체 속성으로는 불가능하다. */
+}
+a:visited {
+  color: #5500ff;
+  text-decoration: none;
+}
+a:active {
+  color: #ff00ff;
+  text-decoration: none;
+}
+a:hover {
+  /* 마우스 커서를 가져다 대면 링크가 짙은 하늘색으로 변하면서 사라졌던 밑줄이 다시 생긴다.
+  이는 body 태그의 자체 속성으로는 불가능하다. */
+  color: #0055ff;
+  text-decoration: underline, highlight;
+}
