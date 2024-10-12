@@ -18,3 +18,8 @@ a:hover {
   color: #0055ff;
   text-decoration: underline, highlight;
 }
+}
+
+classroom_button {
+  color: rgb(218, 229, 255)
+}
