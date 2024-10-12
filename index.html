@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Word Memorization</title>
+</head>
+<body>
+    <div class="flashcard-container">
+        <button class="arrow left" onclick="previousCard()">&#10094;</button>
+        <div class="flashcard" onclick="flipCard()">
+            <div class="front">
+                <span id="word">apple</span>
+            </div>
+            <div class="back">
+                <p id="definition">A fruit that is usually round, red or green, and sweet.</p>
+            </div>
+        </div>
+        <button class="arrow right" onclick="nextCard()">&#10095;</button>
+    </div>
+    <div class="image-container">
+        <img src="thelittleprince.jpeg" alt="The Little Prince" class="corner-image">
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
