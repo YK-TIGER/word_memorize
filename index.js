@@ -61,25 +61,21 @@ const words = [
     { word: "vicious", definition: "Spiteful, malicious; 악랄한." },
     { word: "reassure", definition: "To restore to assurance or confidence; 안심시키다." },
     { word: "fasten", definition: "To attach firmly or securely in place; 매다." },
-    { word: "absent-minded", definition: "Forgetful; 딴 데 정신이 팔린." }
+    { word: "absent-minded", definition: "Forgetful; 딴 데 정신이 팔린." },
 ];
 
-// 현재 단어를 표시하는 변수
-let currentWordIndex = 0;
-
 // 첫 번째 단어와 정의를 화면에 표시
-function showWord(index) {
-    document.getElementById('word').textContent = words[index].word;
-    document.getElementById('definition').textContent = words[index].definition;
-    document.getElementById('word').style.display = 'block';
-    document.getElementById('definition').style.display = 'none';
+function showFirstWord() {
+    document.getElementById('word').textContent = words[0].word; // 첫 번째 단어
+    document.getElementById('definition').textContent = words[0].definition; // 첫 번째 정의
 }
 
-// 카드 뒤집기 함수
+// 카드를 뒤집는 함수 (예시로 정의)
 function flipCard() {
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
-
+    
+    // 단어가 보이면 정의를 보이게, 정의가 보이면 단어를 보이게
     if (wordElement.style.display !== 'none') {
         wordElement.style.display = 'none';
         definitionElement.style.display = 'block';
@@ -89,34 +85,5 @@ function flipCard() {
     }
 }
 
-// 이전 단어로 이동
-function previousCard() {
-    if (currentWordIndex > 0) {
-        currentWordIndex--;
-        showWord(currentWordIndex);
-    }
-}
-
-// 다음 단어로 이동
-function nextCard() {
-    if (currentWordIndex < words.length - 1) {
-        currentWordIndex++;
-        showWord(currentWordIndex);
-    }
-}
-
-// 키보드 화살표 이벤트 처리
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowLeft') {
-        previousCard(); // 왼쪽 화살표 누르면 이전 카드로
-    } else if (event.key === 'ArrowRight') {
-        nextCard(); // 오른쪽 화살표 누르면 다음 카드로
-    } else if (event.key === ' ') {
-        flipCard(); // 스페이스바 누르면 카드 뒤집기
-    }
-});
-
 // 페이지가 로드될 때 첫 번째 단어를 보여줌
-window.onload = function() {
-    showWord(currentWordIndex);
-};
+window.onload = showFirstWord;
