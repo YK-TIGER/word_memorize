@@ -110,6 +110,12 @@ document.addEventListener('keydown', (event) => {
         flipCard(); // 스페이스바를 누르면 카드 플립
         event.preventDefault(); // 기본 스페이스바 동작 방지
     }
+    if (event.code === 'ArrowLeft') {
+        previousCard()
+    }
+    if (event.code === 'ArrowRight') {
+        nextCard()
+    }
 });
 
 //
