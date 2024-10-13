@@ -61,51 +61,55 @@ const words = [
     { word: "vicious", definition: "Spiteful, malicious; 악랄한." },
     { word: "reassure", definition: "To restore to assurance or confidence; 안심시키다." },
     { word: "fasten", definition: "To attach firmly or securely in place; 매다." },
-    { word: "absent-minded", definition: "Forgetful; 딴 데 정신이 팔린." },
+    { word: "absent-minded", definition: "Forgetful; 딴 데 정신이 팔린." }
 ];
 
-// 현재 단어를 표시하는 변수
-let currentWordIndex = 0;
+let currentIndex = 0;
 
-// 첫 번째 단어와 정의를 화면에 표시
-function showWord(index) {
-    document.getElementById('word').textContent = words[index].word;
-    document.getElementById('definition').textContent = words[index].definition;
-    document.getElementById('word').style.display = 'block';
-    document.getElementById('definition').style.display = 'none';
-}
-
-// 카드 뒤집기 함수
 function flipCard() {
+    const flashcard = document.querySelector('.flashcard');
+    flashcard.classList.toggle('flipped');
+
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
 
-    if (wordElement.style.display !== 'none') {
-        wordElement.style.display = 'none';
-        definitionElement.style.display = 'block';
+    if (flashcard.classList.contains('flipped')) {
+        definitionElement.style.display = 'block'; 
+        wordElement.style.display = 'none'; 
     } else {
-        wordElement.style.display = 'block';
-        definitionElement.style.display = 'none';
+        definitionElement.style.display = 'none'; 
+        wordElement.style.display = 'inline'; 
     }
 }
 
-// 이전 단어로 이동
 function previousCard() {
-    if (currentWordIndex > 0) {
-        currentWordIndex--;
-        showWord(currentWordIndex);
-    }
+    currentIndex = (currentIndex - 1 + words.length) % words.length;
+    updateCard();
 }
 
-// 다음 단어로 이동
 function nextCard() {
-    if (currentWordIndex < words.length - 1) {
-        currentWordIndex++;
-        showWord(currentWordIndex);
-    }
+    currentIndex = (currentIndex + 1) % words.length;
+    updateCard();
 }
 
-// 페이지가 로드될 때 첫 번째 단어를 보여줌
-window.onload = function() {
-    showWord(currentWordIndex);
-};
+function updateCard() {
+    const wordElement = document.getElementById('word');
+    const definitionElement = document.getElementById('definition');
+
+    wordElement.textContent = words[currentIndex].word;
+    definitionElement.textContent = words[currentIndex].definition;
+
+    // 단어가 무조건 보이도록 설정
+    wordElement.style.display = 'inline'; 
+    definitionElement.style.display = 'none'; 
+    document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 초기 상태로 설정
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+        flipCard(); // 스페이스바를 누르면 카드 플립
+        event.preventDefault(); // 기본 스페이스바 동작 방지
+    }
+});
+
+//
