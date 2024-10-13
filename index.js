@@ -98,8 +98,11 @@ function updateCard() {
 
     wordElement.textContent = words[currentIndex].word;
     definitionElement.textContent = words[currentIndex].definition;
-    definitionElement.style.display = 'block'; 
-    document.querySelector('.flashcard').classList.remove('flipped'); 
+
+    // 단어가 무조건 보이도록 설정
+    wordElement.style.display = 'inline'; 
+    definitionElement.style.display = 'none'; 
+    document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 초기 상태로 설정
 }
 
 document.addEventListener('keydown', (event) => {
@@ -109,5 +112,4 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-// 초기 카드 업데이트
-updateCard();
+//
