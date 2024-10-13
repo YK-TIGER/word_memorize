@@ -86,4 +86,4 @@ function flipCard() {
 }
 
 // 페이지가 로드될 때 첫 번째 단어를 보여줌
-window.onload = showFirstWord;
+//window.onload = showFirstWord;
