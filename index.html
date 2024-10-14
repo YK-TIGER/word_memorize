@@ -8,6 +8,10 @@
     <link rel="icon" href="icon.png"/>
 </head>
 <body>
+    <div class="mode-container">
+        <button id="memorizationModeButton" onclick="setMode('memorization')">암기 모드</button>
+        <button id="quizModeButton" onclick="setMode('quiz')">퀴즈 모드</button>
+    </div>
     <div class="flashcard-container">
         <button class="arrow left" onclick="previousCard()">&#10094;</button>
         <div class="flashcard" onclick="flipCard()">
