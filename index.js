@@ -64,80 +64,107 @@ const words = [
     { word: "absent-minded", definition: "Forgetful; 딴 데 정신이 팔린." }
 ];
 
+// 단어와 정의 리스트는 여기서 생략되었습니다.
+// const words = [ ... ];
+
 let currentIndex = 0;
 let mode = 'memorization'; // 기본 모드는 암기 모드
 
 // 모드 설정 함수
 function setMode(selectedMode) {
     mode = selectedMode;
-    updateCard(); // 모드 변경 시 현재 카드를 업데이트
-    if (mode === 'quiz') {
-        alert('퀴즈 모드입니다. 단어를 보고 정의를 외워보세요.');
-    } else {
-        alert('암기 모드입니다. 단어와 정의를 플립하며 학습하세요.');
+    if (mode === 'memorization') {
+        document.querySelector('.flashcard-container').style.display = 'flex';
+        document.querySelector('.quiz-container').style.display = 'none';
+        showWord(currentIndex);
+    } else if (mode === 'quiz') {
+        document.querySelector('.flashcard-container').style.display = 'none';
+        document.querySelector('.quiz-container').style.display = 'flex';
+        showQuizWord(currentIndex);
     }
 }
 
+// 단어 암기 모드: 단어와 정의를 번갈아 가며 표시
+function showWord(index) {
+    document.getElementById('word').textContent = words[index].word;
+    document.getElementById('definition').textContent = words[index].definition;
+    document.getElementById('word').style.display = 'block';
+    document.getElementById('definition').style.display = 'none';
+    document.querySelector('.flashcard').classList.remove('flipped');
+}
+
+// 카드 뒤집기 함수
 function flipCard() {
-    const flashcard = document.querySelector('.flashcard');
-    const wordElement = document.getElementById('word');
-    const definitionElement = document.getElementById('definition');
+    if (mode === 'memorization') {
+        const flashcard = document.querySelector('.flashcard');
+        flashcard.classList.toggle('flipped');
 
-    if (mode === 'quiz') {
-        // 퀴즈 모드에서는 스페이스바를 눌러서 정의를 보여줌
-        flashcard.classList.toggle('flipped');
+        const wordElement = document.getElementById('word');
+        const definitionElement = document.getElementById('definition');
+
         if (flashcard.classList.contains('flipped')) {
-            definitionElement.style.display = 'block'; // 정의 보여줌
-            wordElement.style.display = 'none'; // 단어 숨김
+            definitionElement.style.display = 'block'; // 정의 보여주기
+            wordElement.style.display = 'none'; // 단어 숨기기
         } else {
-            definitionElement.style.display = 'none'; // 정의 숨김
-            wordElement.style.display = 'inline'; // 단어 보여줌
-        }
-    } else {
-        // 암기 모드에서는 기존 방식대로 단어와 정의를 플립
-        flashcard.classList.toggle('flipped');
-        if (flashcard.classList.contains('flipped')) {
-            definitionElement.style.display = 'block'; // 정의 보여줌
-            wordElement.style.display = 'none'; // 단어 숨김
-        } else {
-            definitionElement.style.display = 'none'; // 정의 숨김
-            wordElement.style.display = 'inline'; // 단어 보여줌
+            definitionElement.style.display = 'none'; // 정의 숨기기
+            wordElement.style.display = 'inline'; // 단어 보여주기
         }
     }
 }
 
+// 퀴즈 모드: 단어를 보여주고 정의를 입력받음
+function showQuizWord(index) {
+    document.getElementById('quiz-word').textContent = words[index].word;
+    document.getElementById('quiz-answer').value = '';
+    document.getElementById('quiz-result').textContent = '';
+}
+
+function checkAnswer() {
+    const userAnswer = document.getElementById('quiz-answer').value.trim();
+    const correctAnswer = words[currentIndex].definition.trim();
+    
+    if (userAnswer === correctAnswer) {
+        document.getElementById('quiz-result').textContent = '정답입니다!';
+        document.getElementById('quiz-result').style.color = 'green';
+    } else {
+        document.getElementById('quiz-result').textContent = `틀렸습니다. 정답은: ${correctAnswer}`;
+        document.getElementById('quiz-result').style.color = 'red';
+    }
+}
+
+function skipAnswer() {
+    document.getElementById('quiz-answer').value = '';
+    document.getElementById('quiz-result').textContent = '스킵되었습니다.';
+    document.getElementById('quiz-result').style.color = 'orange';
+    nextCard();
+}
+
+// 이전 단어로 이동
 function previousCard() {
     currentIndex = (currentIndex - 1 + words.length) % words.length;
-    updateCard(); // 이전 카드로 이동
+    if (mode === 'memorization') {
+        showWord(currentIndex);
+    } else if (mode === 'quiz') {
+        showQuizWord(currentIndex);
+    }
 }
 
+// 다음 단어로 이동
 function nextCard() {
     currentIndex = (currentIndex + 1) % words.length;
-    updateCard(); // 다음 카드로 이동
-}
-
-function updateCard() {
-    const wordElement = document.getElementById('word');
-    const definitionElement = document.getElementById('definition');
-
-    wordElement.textContent = words[currentIndex].word; // 새로운 단어 설정
-    definitionElement.textContent = words[currentIndex].definition; // 새로운 정의 설정
-
-    // 카드를 새로 넘길 때 모드에 맞게 처리
-    if (mode === 'quiz') {
-        wordElement.style.display = 'inline'; // 퀴즈 모드에서는 단어만 보여줌
-        definitionElement.style.display = 'none'; // 정의는 숨김
-    } else {
-        wordElement.style.display = 'inline'; // 암기 모드에서는 단어가 먼저 보임
-        definitionElement.style.display = 'none'; // 정의는 숨김
+    if (mode === 'memorization') {
+        showWord(currentIndex);
+    } else if (mode === 'quiz') {
+        showQuizWord(currentIndex);
     }
-
-    document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 앞면으로 초기화
 }
 
+// 키보드 화살표 및 스페이스바 이벤트 처리
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
-        flipCard(); // 스페이스바를 누르면 카드 플립
+        if (mode === 'memorization') {
+            flipCard(); // 암기 모드에서는 스페이스바로 카드 뒤집기
+        }
         event.preventDefault(); // 기본 스페이스바 동작 방지
     }
     if (event.code === 'ArrowLeft') {
@@ -147,3 +174,8 @@ document.addEventListener('keydown', (event) => {
         nextCard(); // 오른쪽 화살표로 다음 카드로 이동
     }
 });
+
+// 페이지가 로드될 때 기본 모드 설정
+window.onload = function() {
+    setMode('memorization'); // 기본적으로 암기 모드로 설정
+};
