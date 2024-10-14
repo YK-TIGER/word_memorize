@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>영어 단어 외우기1</title>
+    <title>영어 단어 외우기</title>
     <link rel="icon" href="icon.png"/>
 </head>
 <body>
     <div class="mode-buttons">
-        <button id="memorization-mode" onclick="setMode('memorization')">암기 모드</button>
-        <button id="quiz-mode" onclick="setMode('quiz')">퀴즈 모드</button>
+        <button onclick="setMode('memorization')">암기 모드</button>
+        <button onclick="setMode('quiz')">퀴즈 모드</button>
     </div>
     
     <div class="flashcard-container">
@@ -27,7 +27,7 @@
     </div>
     
     <div class="quiz-input-container" style="display:none;">
-        <input type="text" id="answer-input" placeholder="단어 입력" />
+        <input type="text" id="answer-input" placeholder="정답을 입력하세요">
         <button onclick="submitAnswer()">제출</button>
         <button onclick="skipCard()">스킵</button>
     </div>
@@ -35,7 +35,6 @@
     <div class="image-container">
         <img src="littleprince.jpeg" alt="The Little Prince" class="corner-image">
     </div>
-
     <script src="index.js"></script>
 </body>
 </html>
