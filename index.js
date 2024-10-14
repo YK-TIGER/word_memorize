@@ -75,47 +75,34 @@ function toggleQuizMode() {
 function updateCard() {
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
+    const quizInput = document.getElementById('quiz-input');
+
+    if (quizMode) {
+        // 퀴즈 모드일 때는 뜻을 보여주고, 단어는 숨깁니다.
+        wordElement.style.display = 'none';
+        definitionElement.style.display = 'block';
+        quizInput.style.display = 'block'; // 입력 필드 보이기
+        quizInput.value = ''; // 입력 필드 초기화
+    } else {
+        // 암기 모드일 때는 단어를 보여주고, 뜻은 숨깁니다.
+        wordElement.style.display = 'block';
+        definitionElement.style.display = 'none';
+        quizInput.style.display = 'none'; // 입력 필드 숨기기
+    }
 
     wordElement.textContent = words[currentIndex].word;
     definitionElement.textContent = words[currentIndex].definition;
-
-    if (quizMode) {
-        // 퀴즈 모드일 때는 정의를 보여줍니다.
-        definitionElement.style.display = 'block';
-        wordElement.style.display = 'none';
-
-        // 입력 필드를 보여줍니다.
-        showQuizInput();
-    } else {
-        // 일반 암기 모드일 때는 단어를 보여줍니다.
-        wordElement.style.display = 'inline'; 
-        definitionElement.style.display = 'none'; 
-        hideQuizInput(); // 입력 필드를 숨깁니다.
-    }
-
-    document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 초기 상태로 설정
-}
-
-function showQuizInput() {
-    const inputContainer = document.getElementById('quiz-input');
-    inputContainer.style.display = 'block'; // 입력 필드 보여줌
-    inputContainer.value = ''; // 이전 입력 값 초기화
-}
-
-function hideQuizInput() {
-    const inputContainer = document.getElementById('quiz-input');
-    inputContainer.style.display = 'none'; // 입력 필드 숨김
 }
 
 function checkAnswer() {
-    const answer = document.getElementById('quiz-input').value.trim();
-    const correctDefinition = words[currentIndex].definition;
+    const quizInput = document.getElementById('quiz-input').value.trim();
+    const correctAnswer = words[currentIndex].word;
 
-    if (answer === correctDefinition) {
-        alert("정답입니다!");
-        nextCard(); // 정답 시 다음 카드로 이동
+    if (quizInput.toLowerCase() === correctAnswer.toLowerCase()) {
+        alert('정답입니다!');
+        nextCard(); // 정답이면 다음 카드로 이동
     } else {
-        alert("틀렸습니다. 다시 시도하세요.");
+        alert('틀렸습니다. 다시 시도하세요.');
     }
 }
 
@@ -133,5 +120,5 @@ function flipCard() {
     document.querySelector('.flashcard').classList.toggle('flipped'); // 카드 플립
 }
 
-// 초기 카드 업데이트
+// 초기 카드 설정
 updateCard();
