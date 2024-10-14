@@ -64,100 +64,74 @@ const words = [
     { word: "absent-minded", definition: "Forgetful; 딴 데 정신이 팔린." }
 ];
 
-let currentIndex = 0;
-let mode = 'memorization'; // 기본 모드는 암기 모드
+let currentIndex = 0; // 현재 카드 인덱스
+let quizMode = false; // 퀴즈 모드 상태
 
-function setMode(newMode) {
-    mode = newMode;
-    const quizInputContainer = document.querySelector('.quiz-input-container');
-    
-    if (mode === 'quiz') {
-        quizInputContainer.style.display = 'flex'; // 퀴즈 입력 필드 보이기
-    } else {
-        quizInputContainer.style.display = 'none'; // 암기 모드에서는 숨김
-    }
-    updateCard();
-}
-
-function flipCard() {
-    const flashcard = document.querySelector('.flashcard');
-    
-    if (mode === 'memorization') {
-        flashcard.classList.toggle('flipped');
-        const wordElement = document.getElementById('word');
-        const definitionElement = document.getElementById('definition');
-
-        if (flashcard.classList.contains('flipped')) {
-            definitionElement.style.display = 'block';
-            wordElement.style.display = 'none';
-        } //else {
-            //definitionElement.style.display = 'none';
-            //wordElement.style.display = 'inline';
-        //}
-    }
-}
-
-function previousCard() {
-    currentIndex = (currentIndex - 1 + words.length) % words.length;
-    updateCard();
-}
-
-function nextCard() {
-    currentIndex = (currentIndex + 1) % words.length;
-    updateCard();
+function toggleQuizMode() {
+    quizMode = !quizMode; // 퀴즈 모드 상태 토글
+    updateCard(); // 카드 업데이트
 }
 
 function updateCard() {
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
-    const flashcard = document.querySelector('.flashcard');
-    
+
     wordElement.textContent = words[currentIndex].word;
     definitionElement.textContent = words[currentIndex].definition;
 
-    if (mode === 'quiz') {
-        flashcard.classList.remove('flipped');
-        definitionElement.style.display = 'inline'; // 뜻을 보여줌
-        wordElement.style.display = 'none'; // 단어 숨김
+    if (quizMode) {
+        // 퀴즈 모드일 때는 정의를 보여줍니다.
+        definitionElement.style.display = 'block';
+        wordElement.style.display = 'none';
+
+        // 입력 필드를 보여줍니다.
+        showQuizInput();
     } else {
-        flashcard.classList.remove('flipped'); // 암기 모드에서는 단어를 먼저 보여줌
-        wordElement.style.display = 'inline'; // 단어 보임
-        definitionElement.style.display = 'none'; // 뜻 숨김
+        // 일반 암기 모드일 때는 단어를 보여줍니다.
+        wordElement.style.display = 'inline'; 
+        definitionElement.style.display = 'none'; 
+        hideQuizInput(); // 입력 필드를 숨깁니다.
     }
+
+    document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 초기 상태로 설정
 }
 
-function submitAnswer() {
-    const input = document.getElementById('answer-input').value.trim().toLowerCase();
-    const correctAnswer = words[currentIndex].word.toLowerCase();
-    
-    if (input === correctAnswer) {
-        alert('정답입니다!');
-        document.getElementById('answer-input').value = ''; // 입력창 초기화
-        nextCard();
+function showQuizInput() {
+    const inputContainer = document.getElementById('quiz-input');
+    inputContainer.style.display = 'block'; // 입력 필드 보여줌
+    inputContainer.value = ''; // 이전 입력 값 초기화
+}
+
+function hideQuizInput() {
+    const inputContainer = document.getElementById('quiz-input');
+    inputContainer.style.display = 'none'; // 입력 필드 숨김
+}
+
+function checkAnswer() {
+    const answer = document.getElementById('quiz-input').value.trim();
+    const correctDefinition = words[currentIndex].definition;
+
+    if (answer === correctDefinition) {
+        alert("정답입니다!");
+        nextCard(); // 정답 시 다음 카드로 이동
     } else {
-        alert('오답입니다. 다시 시도해보세요.');
+        alert("틀렸습니다. 다시 시도하세요.");
     }
 }
 
-function skipCard() {
-    document.getElementById('answer-input').value = ''; // 입력창 초기화
-    nextCard();
+function nextCard() {
+    currentIndex = (currentIndex + 1) % words.length; // 다음 카드로 이동
+    updateCard(); // 카드 업데이트
 }
 
-document.addEventListener('keydown', (event) => {
-    if (event.code === 'Space' && mode === 'memorization') {
-        flipCard(); // 암기 모드에서 스페이스바로 카드 플립
-        event.preventDefault();
-    }
-    if (event.code === 'ArrowLeft') {
-        previousCard();
-    }
-    if (event.code === 'ArrowRight') {
-        nextCard();
-    }
-});
+function previousCard() {
+    currentIndex = (currentIndex - 1 + words.length) % words.length; // 이전 카드로 이동
+    updateCard(); // 카드 업데이트
+}
 
-// 페이지가 로드될 때 초기 카드 설정
-document.addEventListener('DOMContentLoaded', () => {
-    updateCard();
-});
+function flipCard() {
+    document.querySelector('.flashcard').classList.toggle('flipped'); // 카드 플립
+}
+
+// 초기 카드 업데이트
+updateCard();
