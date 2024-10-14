@@ -64,34 +64,35 @@ const words = [
     { word: "absent-minded", definition: "Forgetful; 딴 데 정신이 팔린." }
 ];
 
-let currentIndex = 0; // 현재 카드 인덱스
-let quizMode = false; // 퀴즈 모드 상태
+let currentIndex = 0;
+let mode = 'memorize'; // 기본 모드는 '암기 모드'
 
-function toggleQuizMode() {
-    quizMode = !quizMode; // 퀴즈 모드 상태 토글
+function setMode(selectedMode) {
+    mode = selectedMode; // 모드 설정
     updateCard(); // 카드 업데이트
 }
 
 function updateCard() {
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
+    const quizInputContainer = document.getElementById('quiz-input-container');
     const quizInput = document.getElementById('quiz-input');
-
-    if (quizMode) {
-        // 퀴즈 모드일 때는 뜻을 보여주고, 단어는 숨깁니다.
-        wordElement.style.display = 'none';
-        definitionElement.style.display = 'block';
-        quizInput.style.display = 'block'; // 입력 필드 보이기
-        quizInput.value = ''; // 입력 필드 초기화
-    } else {
-        // 암기 모드일 때는 단어를 보여주고, 뜻은 숨깁니다.
-        wordElement.style.display = 'block';
-        definitionElement.style.display = 'none';
-        quizInput.style.display = 'none'; // 입력 필드 숨기기
-    }
 
     wordElement.textContent = words[currentIndex].word;
     definitionElement.textContent = words[currentIndex].definition;
+
+    if (mode === 'quiz') {
+        // 퀴즈 모드에서는 단어를 숨기고 뜻만 보여주며, 입력 필드를 표시
+        wordElement.style.display = 'none';
+        definitionElement.style.display = 'block';
+        quizInputContainer.style.display = 'block';
+        quizInput.value = ''; // 입력 필드 초기화
+    } else {
+        // 암기 모드에서는 단어를 보여주고 뜻을 숨기며, 입력 필드를 숨김
+        wordElement.style.display = 'block';
+        definitionElement.style.display = 'none';
+        quizInputContainer.style.display = 'none';
+    }
 }
 
 function checkAnswer() {
@@ -100,25 +101,29 @@ function checkAnswer() {
 
     if (quizInput.toLowerCase() === correctAnswer.toLowerCase()) {
         alert('정답입니다!');
-        nextCard(); // 정답이면 다음 카드로 이동
+        nextCard(); // 정답일 때 다음 카드로 이동
     } else {
         alert('틀렸습니다. 다시 시도하세요.');
     }
 }
 
 function nextCard() {
-    currentIndex = (currentIndex + 1) % words.length; // 다음 카드로 이동
-    updateCard(); // 카드 업데이트
+    currentIndex = (currentIndex + 1) % words.length;
+    updateCard();
 }
 
 function previousCard() {
-    currentIndex = (currentIndex - 1 + words.length) % words.length; // 이전 카드로 이동
-    updateCard(); // 카드 업데이트
+    currentIndex = (currentIndex - 1 + words.length) % words.length;
+    updateCard();
 }
 
-function flipCard() {
-    document.querySelector('.flashcard').classList.toggle('flipped'); // 카드 플립
-}
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'ArrowLeft') {
+        previousCard();
+    } else if (event.code === 'ArrowRight') {
+        nextCard();
+    }
+});
 
-// 초기 카드 설정
+// 처음 카드 설정
 updateCard();
