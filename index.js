@@ -72,9 +72,9 @@ function setMode(newMode) {
     const quizInputContainer = document.querySelector('.quiz-input-container');
     
     if (mode === 'quiz') {
-        quizInputContainer.style.display = 'flex';
+        quizInputContainer.style.display = 'flex'; // 퀴즈 입력 필드 보이기
     } else {
-        quizInputContainer.style.display = 'none';
+        quizInputContainer.style.display = 'none'; // 암기 모드에서는 숨김
     }
     updateCard();
 }
