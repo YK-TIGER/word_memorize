@@ -1,19 +1,16 @@
 body {
     font-family: Arial, sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
 }
 
-.mode-buttons {
-    position: absolute;
-    top: 20px;
-    display: flex;
-    gap: 10px;
+.mode-toggle {
+    margin-bottom: 20px; /* 모드 버튼 사이의 간격 */
 }
 
 .flashcard-container {
@@ -68,12 +65,6 @@ body {
     margin: 0 10px;
 }
 
-.quiz-input-container {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
 .image-container {
     position: absolute;
     bottom: 20px;
@@ -81,15 +72,15 @@ body {
 }
 
 .corner-image {
-    width: 200px;
-    height: auto;
-    border-radius: 10px;
+    width: 200px; /* 원하는 크기로 조정 */
+    height: auto; /* 비율에 맞게 높이 자동 조정 */
+    border-radius: 10px; /* 모서리 둥글게 */
 }
 
 #word {
-    font-size: 56px;
+    font-size: 56px; /* 단어 크기 */
 }
 
 #definition {
-    font-size: 45px;
+    font-size: 45px; /* 정의 크기 */
 }
