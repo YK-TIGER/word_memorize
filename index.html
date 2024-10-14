@@ -8,10 +8,11 @@
     <link rel="icon" href="icon.png"/>
 </head>
 <body>
-    <div class="mode-toggle">
-        <button onclick="toggleQuizMode()">퀴즈 모드</button>
-        <button onclick="toggleQuizMode()">암기 모드</button>
+    <div class="mode-buttons">
+        <button onclick="setMode('memorize')">암기 모드</button>
+        <button onclick="setMode('quiz')">퀴즈 모드</button>
     </div>
+
     <div class="flashcard-container">
         <button class="arrow left" onclick="previousCard()">&#10094;</button>
         <div class="flashcard" onclick="flipCard()">
@@ -24,11 +25,17 @@
         </div>
         <button class="arrow right" onclick="nextCard()">&#10095;</button>
     </div>
+
+    <!-- 퀴즈 모드에서 사용하는 입력 필드 -->
+    <div id="quiz-input-container" style="display: none;">
+        <input type="text" id="quiz-input" placeholder="단어를 입력하세요">
+        <button onclick="checkAnswer()">제출</button>
+    </div>
+
     <div class="image-container">
         <img src="littleprince.jpeg" alt="The Little Prince" class="corner-image">
     </div>
-    <input type="text" id="quiz-input" placeholder="답을 입력하세요" style="display:none;" />
-    <button onclick="checkAnswer()">답 확인</button>
+
     <script src="index.js"></script>
 </body>
 </html>
