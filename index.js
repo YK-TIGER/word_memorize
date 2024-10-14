@@ -117,12 +117,12 @@ function updateCard() {
 
     if (mode === 'quiz') {
         flashcard.classList.remove('flipped');
-        definitionElement.style.display = 'block'; // 뜻 먼저 보여줌
-        wordElement.style.display = 'none';
+        definitionElement.style.display = 'block'; // 뜻을 보여줌
+        wordElement.style.display = 'none'; // 단어 숨김
     } else {
-        flashcard.classList.remove('flipped'); // 암기 모드에서는 기본적으로 단어 보이기
-        wordElement.style.display = 'inline';
-        definitionElement.style.display = 'none';
+        flashcard.classList.remove('flipped'); // 암기 모드에서는 단어를 먼저 보여줌
+        wordElement.style.display = 'inline'; // 단어 보임
+        definitionElement.style.display = 'none'; // 뜻 숨김
     }
 }
 
@@ -132,6 +132,7 @@ function submitAnswer() {
     
     if (input === correctAnswer) {
         alert('정답입니다!');
+        document.getElementById('answer-input').value = ''; // 입력창 초기화
         nextCard();
     } else {
         alert('오답입니다. 다시 시도해보세요.');
@@ -139,6 +140,7 @@ function submitAnswer() {
 }
 
 function skipCard() {
+    document.getElementById('answer-input').value = ''; // 입력창 초기화
     nextCard();
 }
 
@@ -153,4 +155,9 @@ document.addEventListener('keydown', (event) => {
     if (event.code === 'ArrowRight') {
         nextCard();
     }
+});
+
+// 페이지가 로드될 때 초기 카드 설정
+document.addEventListener('DOMContentLoaded', () => {
+    updateCard();
 });
