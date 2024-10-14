@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>영어 단어 외우기1</title>
+    <title>영어 단어 외우기</title>
     <link rel="icon" href="icon.png"/>
 </head>
 <body>
-    <!-- 모드 선택 버튼 -->
-    <div class="mode-container">
-        <button id="memorizationModeButton" onclick="setMode('memorization')">암기 모드</button>
-        <button id="quizModeButton" onclick="setMode('quiz')">퀴즈 모드</button>
+    <div class="mode-buttons">
+        <button id="memorization-mode" onclick="setMode('memorization')">암기 모드</button>
+        <button id="quiz-mode" onclick="setMode('quiz')">퀴즈 모드</button>
     </div>
-
-    <!-- 단어 암기 모드 -->
+    
     <div class="flashcard-container">
         <button class="arrow left" onclick="previousCard()">&#10094;</button>
         <div class="flashcard" onclick="flipCard()">
@@ -27,19 +25,13 @@
         </div>
         <button class="arrow right" onclick="nextCard()">&#10095;</button>
     </div>
-
-    <!-- 퀴즈 모드 -->
-    <div class="quiz-container" style="display: none;">
-        <div class="quiz-question">
-            <span id="quiz-word"></span>
-        </div>
-        <input type="text" id="quiz-answer" placeholder="뜻을 입력하세요">
-        <button onclick="checkAnswer()">제출</button>
-        <button onclick="skipAnswer()">스킵</button>
-        <p id="quiz-result"></p>
+    
+    <div class="quiz-input-container" style="display:none;">
+        <input type="text" id="answer-input" placeholder="단어 입력" />
+        <button onclick="submitAnswer()">제출</button>
+        <button onclick="skipCard()">스킵</button>
     </div>
 
-    <!-- 이미지 -->
     <div class="image-container">
         <img src="littleprince.jpeg" alt="The Little Prince" class="corner-image">
     </div>
