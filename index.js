@@ -90,10 +90,10 @@ function flipCard() {
         if (flashcard.classList.contains('flipped')) {
             definitionElement.style.display = 'block';
             wordElement.style.display = 'none';
-        } else {
-            definitionElement.style.display = 'none';
-            wordElement.style.display = 'inline';
-        }
+        } //else {
+            //definitionElement.style.display = 'none';
+            //wordElement.style.display = 'inline';
+        //}
     }
 }
 
