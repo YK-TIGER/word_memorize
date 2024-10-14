@@ -117,7 +117,7 @@ function updateCard() {
 
     if (mode === 'quiz') {
         flashcard.classList.remove('flipped');
-        definitionElement.style.display = 'block'; // 뜻을 보여줌
+        definitionElement.style.display = 'inline'; // 뜻을 보여줌
         wordElement.style.display = 'none'; // 단어 숨김
     } else {
         flashcard.classList.remove('flipped'); // 암기 모드에서는 단어를 먼저 보여줌
