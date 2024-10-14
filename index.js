@@ -65,44 +65,74 @@ const words = [
 ];
 
 let currentIndex = 0;
+let mode = 'memorization'; // 기본 모드는 암기 모드
+
+// 모드 설정 함수
+function setMode(selectedMode) {
+    mode = selectedMode;
+    updateCard(); // 모드 변경 시 현재 카드를 업데이트
+    if (mode === 'quiz') {
+        alert('퀴즈 모드입니다. 단어를 보고 정의를 외워보세요.');
+    } else {
+        alert('암기 모드입니다. 단어와 정의를 플립하며 학습하세요.');
+    }
+}
 
 function flipCard() {
     const flashcard = document.querySelector('.flashcard');
-    flashcard.classList.toggle('flipped');
-
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
 
-    if (flashcard.classList.contains('flipped')) {
-        definitionElement.style.display = 'block'; 
-        wordElement.style.display = 'none'; 
+    if (mode === 'quiz') {
+        // 퀴즈 모드에서는 스페이스바를 눌러서 정의를 보여줌
+        flashcard.classList.toggle('flipped');
+        if (flashcard.classList.contains('flipped')) {
+            definitionElement.style.display = 'block'; // 정의 보여줌
+            wordElement.style.display = 'none'; // 단어 숨김
+        } else {
+            definitionElement.style.display = 'none'; // 정의 숨김
+            wordElement.style.display = 'inline'; // 단어 보여줌
+        }
     } else {
-        definitionElement.style.display = 'none'; 
-        wordElement.style.display = 'inline'; 
+        // 암기 모드에서는 기존 방식대로 단어와 정의를 플립
+        flashcard.classList.toggle('flipped');
+        if (flashcard.classList.contains('flipped')) {
+            definitionElement.style.display = 'block'; // 정의 보여줌
+            wordElement.style.display = 'none'; // 단어 숨김
+        } else {
+            definitionElement.style.display = 'none'; // 정의 숨김
+            wordElement.style.display = 'inline'; // 단어 보여줌
+        }
     }
 }
 
 function previousCard() {
     currentIndex = (currentIndex - 1 + words.length) % words.length;
-    updateCard();
+    updateCard(); // 이전 카드로 이동
 }
 
 function nextCard() {
     currentIndex = (currentIndex + 1) % words.length;
-    updateCard();
+    updateCard(); // 다음 카드로 이동
 }
 
 function updateCard() {
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
 
-    wordElement.textContent = words[currentIndex].word;
-    definitionElement.textContent = words[currentIndex].definition;
+    wordElement.textContent = words[currentIndex].word; // 새로운 단어 설정
+    definitionElement.textContent = words[currentIndex].definition; // 새로운 정의 설정
 
-    // 단어가 무조건 보이도록 설정
-    wordElement.style.display = 'inline'; 
-    definitionElement.style.display = 'none'; 
-    document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 초기 상태로 설정
+    // 카드를 새로 넘길 때 모드에 맞게 처리
+    if (mode === 'quiz') {
+        wordElement.style.display = 'inline'; // 퀴즈 모드에서는 단어만 보여줌
+        definitionElement.style.display = 'none'; // 정의는 숨김
+    } else {
+        wordElement.style.display = 'inline'; // 암기 모드에서는 단어가 먼저 보임
+        definitionElement.style.display = 'none'; // 정의는 숨김
+    }
+
+    document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 앞면으로 초기화
 }
 
 document.addEventListener('keydown', (event) => {
@@ -111,11 +141,9 @@ document.addEventListener('keydown', (event) => {
         event.preventDefault(); // 기본 스페이스바 동작 방지
     }
     if (event.code === 'ArrowLeft') {
-        previousCard()
+        previousCard(); // 왼쪽 화살표로 이전 카드로 이동
     }
     if (event.code === 'ArrowRight') {
-        nextCard()
+        nextCard(); // 오른쪽 화살표로 다음 카드로 이동
     }
 });
-
-//
