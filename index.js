@@ -120,6 +120,7 @@ document.addEventListener('keydown', (event) => {
     }
     if (event.code === 'R') {
         let currentIndex = 0;
+        updateCard();
     }
 });
 
