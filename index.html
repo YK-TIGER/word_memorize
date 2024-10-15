@@ -8,6 +8,18 @@
     <link rel="icon" href="icon.png"/>
 </head>
 <body>
+    <div class="flashcard-container">
+        <button class="arrow left" onclick="previousCard()">&#10094;</button>
+        <div class="flashcard" onclick="flipCard()">
+            <div class="front">
+                <span id="word">The Little Prince</span>
+            </div>
+            <div class="back">
+                <p id="definition">chapter 1~27</p>
+            </div>
+        </div>
+        <button class="arrow right" onclick="nextCard()">&#10095;</button>
+    </div>
     <div class="container">
         <div class="flashcard">
             <div class="front">
