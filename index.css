@@ -1,86 +1,60 @@
 body {
-    font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
 }
 
-.mode-toggle {
-    margin-bottom: 20px; /* 모드 버튼 사이의 간격 */
-}
-
-.flashcard-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.flashcard {
-    width: 600px;
-    height: 400px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.5s;
-    position: relative;
-}
-
-.flashcard .front, .flashcard .back {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container {
     text-align: center;
 }
 
-.flashcard .back {
-    display: none;
+.flashcard {
+    width: 400px; /* 너비 조정 */
+    height: 300px; /* 높이 조정 */
+    perspective: 1000px; /* 3D 효과를 위한 원근감 설정 */
+    margin: 20px auto;
 }
 
-.flashcard.flipped .front {
-    display: none;
-}
-
-.flashcard.flipped .back {
-    display: flex;
-}
-
-.arrow {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 20px;
-    border-radius: 5px;
-    margin: 0 10px;
-}
-
-.image-container {
+.flashcard > div {
+    width: 100%;
+    height: 100%;
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    backface-visibility: hidden; /* 카드 뒷면 숨기기 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em; /* 글자 크기 조정 */
+    color: white;
+    transition: transform 0.6s; /* 회전 애니메이션 */
 }
 
-.corner-image {
-    width: 200px; /* 원하는 크기로 조정 */
-    height: auto; /* 비율에 맞게 높이 자동 조정 */
-    border-radius: 10px; /* 모서리 둥글게 */
+.front {
+    background-color: #FF5722; /* 앞면 색상 */
 }
 
-#word {
-    font-size: 56px; /* 단어 크기 */
+.back {
+    background-color: #4CAF50; /* 뒷면 색상 */
+    transform: rotateY(180deg); /* 뒷면 회전 */
 }
 
-#definition {
-    font-size: 45px; /* 정의 크기 */
+.flipped .front {
+    transform: rotateY(180deg); /* 앞면 회전 */
+}
+
+.flipped .back {
+    transform: rotateY(0deg); /* 뒷면 회전 해제 */
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
 }
