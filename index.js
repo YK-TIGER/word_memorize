@@ -118,6 +118,9 @@ document.addEventListener('keydown', (event) => {
     if (event.code === 'ArrowRight') {
         nextCard();
     }
+    if (event.code === 'R') {
+        let currentIndex = 0;
+    }
 });
 
 // 페이지 로드 시 첫 번째 카드 업데이트
