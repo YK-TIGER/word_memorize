@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>영어 단어 외우기</title>
-    <link rel="icon" href="icon.png"/>
+    <title>Flashcard App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="flashcard-container">
-        <button class="arrow left" onclick="previousCard()">&#10094;</button>
-        <div class="flashcard" onclick="flipCard()">
+    <div class="container">
+        <div class="flashcard">
             <div class="front">
-                <span id="word">The Little Prince</span>
+                <h1 id="definition">Definition Here</h1>
             </div>
             <div class="back">
-                <p id="definition">chapter 1~27</p>
+                <h1 id="word">Word Here</h1>
             </div>
         </div>
-        <button class="arrow right" onclick="nextCard()">&#10095;</button>
+        <div class="controls">
+            <button id="previous" onclick="previousCard()">Previous</button>
+            <button id="next" onclick="nextCard()">Next</button>
+        </div>
     </div>
-    <div class="image-container">
-        <img src="littleprince.jpeg" alt="The Little Prince" class="corner-image">
-    </div>
-    <script src="index.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
