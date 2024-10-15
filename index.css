@@ -13,8 +13,8 @@ body {
 }
 
 .flashcard {
-    width: 400px; /* 너비 조정 */
-    height: 300px; /* 높이 조정 */
+    width: 600px; /* 너비 조정 */
+    height: 400px; /* 높이 조정 */
     perspective: 1000px; /* 3D 효과를 위한 원근감 설정 */
     margin: 20px auto;
 }
