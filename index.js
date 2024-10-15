@@ -118,7 +118,7 @@ document.addEventListener('keydown', (event) => {
     if (event.code === 'ArrowRight') {
         nextCard();
     }
-    if (event.code === 'R') {
+    if (event.code === 'keyR') {
         let currentIndex = 0;
         updateCard();
     }
