@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container">
+        <button id="previous" onclick="previousCard()">&#60;</button> <!-- 왼쪽 화살표 '<' -->
         <div class="flashcard">
             <div class="front">
                 <h1 id="definition">Definition Here</h1>
@@ -17,10 +18,7 @@
                 <h1 id="word">Word Here</h1>
             </div>
         </div>
-        <div class="controls">
-            <button id="previous" onclick="previousCard()">&#60;</button> <!-- 왼쪽 화살표 '<' -->
-            <button id="next" onclick="nextCard()">&#62;</button> <!-- 오른쪽 화살표 '>' -->
-        </div>
+        <button id="next" onclick="nextCard()">&#62;</button> <!-- 오른쪽 화살표 '>' -->
     </div>
 
     <script src="index.js"></script>
