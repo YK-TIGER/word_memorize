@@ -20,6 +20,8 @@ body {
     perspective: 1000px; /* 3D 효과를 위한 원근감 설정 */
     margin: 20px;
     position: relative;
+    border-radius: 15px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
 }
 
 .flashcard > div {
@@ -33,6 +35,7 @@ body {
     font-size: 1.5em;
     color: white;
     transition: transform 0.6s; /* 회전 애니메이션 */
+    border-radius: 15px; /* 모서리 둥글게 */
 }
 
 .front {
