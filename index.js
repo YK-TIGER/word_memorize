@@ -123,27 +123,6 @@ document.addEventListener('keydown', (event) => {
         updateCard();
     }
 });
-function flipCard() {
-    const flashcard = document.querySelector('.flashcard');
-    flashcard.classList.toggle('flipped');
-
-    const wordElement = document.getElementById('word');
-    const definitionElement = document.getElementById('definition');
-
-    // 내용 전환
-    if (flashcard.classList.contains('flipped')) {
-        // 플래시카드가 뒤집혔을 때
-        wordElement.style.display = 'none'; // 단어 숨김
-        definitionElement.style.display = 'inline'; // 뜻 보이기
-    } else {
-        // 플래시카드가 앞면일 때
-        definitionElement.style.display = 'none'; // 뜻 숨김
-        wordElement.style.display = 'inline'; // 단어 보이기
-    }
-}
-
-// 플래시카드 클릭 시 flipCard 함수 호출
-document.querySelector('.flashcard').addEventListener('click', flipCard);
 
 // 페이지 로드 시 첫 번째 카드 업데이트
 updateCard();
