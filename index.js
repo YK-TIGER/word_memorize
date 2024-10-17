@@ -122,7 +122,7 @@ document.addEventListener('keydown', (event) => {
         let currentIndex = 0;
         updateCard();
     }
-});
+};
 
 // 페이지 로드 시 첫 번째 카드 업데이트
 updateCard();
