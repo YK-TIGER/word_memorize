@@ -84,7 +84,7 @@ function flipCard() {
     }
 }
 // 플래시카드 클릭 시 flipCard 함수 호출
-document.querySelector('.flashcard').addEventListener('click', flipCard);
+//document.querySelector('.flashcard').addEventListener('click', flipCard);
 function previousCard() {
     currentIndex = (currentIndex - 1 + words.length) % words.length;
     updateCard();
