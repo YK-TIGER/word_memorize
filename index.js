@@ -120,7 +120,7 @@ document.addEventListener('keydown', (event) => {
     if (event.code === 'ArrowRight') {
         nextCard();
     }
-    if (event.code === 'keyR') {
+    if (event.code === 'KeyR') {
         let currentIndex = 0;
         updateCard();
     }
