@@ -74,14 +74,26 @@ function flipCard() {
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
 // 내용 전환
-    if (flashcard.classList.contains('flipped')) {
-// 플래시카드가 뒤집혔을 때
-        wordElement.style.display = 'inline';
-        definitionElement.style.display = 'none';
-    } else {
-// 플래시카드가 앞면일 때
-    definitionElement.style.display = 'inline';
-    wordElement.style.display = 'none';
+    if (mode == 0){
+        if (flashcard.classList.contains('flipped')) {
+    // 플래시카드가 뒤집혔을 때
+            wordElement.style.display = 'inline';
+            definitionElement.style.display = 'none';
+        } else {
+    // 플래시카드가 앞면일 때
+        definitionElement.style.display = 'inline';
+        wordElement.style.display = 'none';
+        }
+    } else{
+        if (flashcard.classList.contains('flipped')) {
+        // 플래시카드가 뒤집혔을 때
+            wordElement.style.display = 'none';
+            definitionElement.style.display = 'inline';
+        } else {
+        // 플래시카드가 앞면일 때
+            definitionElement.style.display = 'none';
+            wordElement.style.display = 'inline';
+        }
     }
 }
 // 플래시카드 클릭 시 flipCard 함수 호출
