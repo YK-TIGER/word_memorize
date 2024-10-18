@@ -1,4 +1,5 @@
 let currentIndex = 0;
+var mode = 0;
 
 const words = [
     { word: "primeval", definition: "Of or relating to the earliest ages." },
@@ -123,6 +124,15 @@ document.addEventListener('keydown', (event) => {
     if (event.code === 'KeyR') {
         let currentIndex = 0;
         updateCard();
+    }
+    if (event.code === 'Space'){
+        if (mode == 0){
+            mode = 1;
+            console.log(mode)
+        } else{
+            mode = 0;
+            console.log(mode)
+        }
     }
 });
 
