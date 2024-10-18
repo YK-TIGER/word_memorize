@@ -1,6 +1,7 @@
 let currentIndex = 0;
-var mode = 0;
+let mode = 0;
 
+// words
 const words = [
     { word: "primeval", definition: "Of or relating to the earliest ages." },
     { word: "distinguish", definition: "Discern, to perceive a difference in." },
@@ -71,33 +72,49 @@ const words = [
 function flipCard() {
     const flashcard = document.querySelector('.flashcard');
     flashcard.classList.toggle('flipped');
+}
+
+// Now this was hard as hell
+function updateCardContent() {
     const wordElement = document.getElementById('word');
     const definitionElement = document.getElementById('definition');
-// 내용 전환
-    if (mode == 0){
-        if (flashcard.classList.contains('flipped')) {
-    // 플래시카드가 뒤집혔을 때
-            wordElement.style.display = 'inline';
-            definitionElement.style.display = 'none';
-        } else {
-    // 플래시카드가 앞면일 때
-        definitionElement.style.display = 'inline';
-        wordElement.style.display = 'none';
-        }
-    } else{
-        if (flashcard.classList.contains('flipped')) {
-        // 플래시카드가 뒤집혔을 때
-            wordElement.style.display = 'none';
-            definitionElement.style.display = 'inline';
-        } else {
-        // 플래시카드가 앞면일 때
-            definitionElement.style.display = 'none';
-            wordElement.style.display = 'inline';
-        }
+    const flashcardInner = document.querySelector('.flashcard-inner');
+
+    // Update the texts based on the current card
+    wordElement.textContent = words[currentIndex].word;
+    definitionElement.textContent = words[currentIndex].definition;
+
+    // Adjust the layout based on the mode
+    if (mode === 1) { // Definition first
+        flashcardInner.innerHTML = `
+            <div class="flashcard-front">
+                <h1 id="definition">${words[currentIndex].definition}</h1>
+            </div>
+            <div class="flashcard-back">
+                <h1 id="word">${words[currentIndex].word}</h1>
+            </div>
+        `;
+    } else { // Word first
+        flashcardInner.innerHTML = `
+            <div class="flashcard-front">
+                <h1 id="word">${words[currentIndex].word}</h1>
+            </div>
+            <div class="flashcard-back">
+                <h1 id="definition">${words[currentIndex].definition}</h1>
+            </div>
+        `;
     }
 }
-// 플래시카드 클릭 시 flipCard 함수 호출
-//document.querySelector('.flashcard').addEventListener('click', flipCard);
+
+// New menu function
+function changeStudyMode() {
+    const studyMode = document.getElementById('studyMode').value;
+    mode = studyMode === 'definitionFirst' ? 0 : 1;
+    const flashcard = document.querySelector('.flashcard');
+    flashcard.classList.remove('flipped'); // Ensure it is not flipped
+    updateCardContent();
+}
+
 function previousCard() {
     currentIndex = (currentIndex - 1 + words.length) % words.length;
     updateCard();
@@ -109,29 +126,16 @@ function nextCard() {
 }
 
 function updateCard() {
-    const wordElement = document.getElementById('word');
-    const definitionElement = document.getElementById('definition');
-
-    wordElement.textContent = words[currentIndex].word;
-    definitionElement.textContent = words[currentIndex].definition;
-
-    // 의미가 무조건 보이도록 설정
-    if (mode == 0){
-        definitionElement.style.display = 'inline'; 
-        wordElement.style.display = 'none'; 
-        document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 초기 상태로 설정
-    } else{
-        definitionElement.style.display = 'none'; 
-        wordElement.style.display = 'inline'; 
-        document.querySelector('.flashcard').classList.remove('flipped');
-    }
+    const flashcard = document.querySelector('.flashcard');
+    flashcard.classList.remove('flipped'); // Ensure it is not flipped
+    updateCardContent();
 }
 
-// 키보드 이벤트 리스너 추가
+// Event listeners
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
-        flipCard(); // 스페이스바를 누르면 카드 플립
-        event.preventDefault(); // 기본 스페이스바 동작 방지
+        flipCard();
+        event.preventDefault();
     }
     if (event.code === 'ArrowLeft') {
         previousCard();
@@ -139,18 +143,7 @@ document.addEventListener('keydown', (event) => {
     if (event.code === 'ArrowRight') {
         nextCard();
     }
-    if (event.code === 'KeyR') {
-        let currentIndex = 0;
-        updateCard();
-    }
-    if (event.code === 'KeyC'){
-        if (mode == 0){
-            mode = 1;
-        } else{
-            mode = 0;
-        }
-    }
 });
 
-// 페이지 로드 시 첫 번째 카드 업데이트
+// Initial card update
 updateCard();
