@@ -1,3 +1,4 @@
-word memorize website
+Word memorization website (Flashcards)
 
-code with chatGPT
+Coded with chatGPT & with our nice lil' brains
+Approved by US!
