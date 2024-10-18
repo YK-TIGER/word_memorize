@@ -67,20 +67,20 @@ const words = [
 ];
 
 
-function FlipCard() {
+function flipCard() {
     const flashcard = document.querySelector('.flashcard');
-    flashcard.classList.toggle('뒤집기');
+    flashcard.classList.toggle('flipped');
     const wordElement = document.getElementById('word');
-    const DefenitionElement = document.getElementById('definition');
+    const definitionElement = document.getElementById('definition');
 // 내용 전환
     if (flashcard.classList.contains('flipped')) {
-// 플래시카드로 뒤집어졌을 때
+// 플래시카드가 뒤집혔을 때
         wordElement.style.display = 'inline';
-        정의요소.style.display = '없음';
+        definitionElement.style.display = 'none';
     } else {
-// 플래시카드가 들어오지 않을 때
-    정의Element.style.display = 'inline';
-    wordElement.style.display = '없음';
+// 플래시카드가 앞면일 때
+    definitionElement.style.display = 'inline';
+    wordElement.style.display = 'none';
     }
 }
 // 플래시카드 클릭 시 flipCard 함수 호출
