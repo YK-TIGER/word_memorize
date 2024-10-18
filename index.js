@@ -104,9 +104,15 @@ function updateCard() {
     definitionElement.textContent = words[currentIndex].definition;
 
     // 의미가 무조건 보이도록 설정
-    definitionElement.style.display = 'inline'; 
-    wordElement.style.display = 'none'; 
-    document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 초기 상태로 설정
+    if (mode == 0){
+        definitionElement.style.display = 'inline'; 
+        wordElement.style.display = 'none'; 
+        document.querySelector('.flashcard').classList.remove('flipped'); // 카드를 초기 상태로 설정
+    } else{
+        definitionElement.style.display = 'none'; 
+        wordElement.style.display = 'inline'; 
+        document.querySelector('.flashcard').classList.remove('flipped');
+    }
 }
 
 // 키보드 이벤트 리스너 추가
@@ -128,10 +134,8 @@ document.addEventListener('keydown', (event) => {
     if (event.code === 'KeyC'){
         if (mode == 0){
             mode = 1;
-            console.log(mode)
         } else{
             mode = 0;
-            console.log(mode)
         }
     }
 });
