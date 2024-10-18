@@ -125,7 +125,7 @@ document.addEventListener('keydown', (event) => {
         let currentIndex = 0;
         updateCard();
     }
-    if (event.code === 'Space'){
+    if (event.code === 'KeyC'){
         if (mode == 0){
             mode = 1;
             console.log(mode)
