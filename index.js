@@ -14,7 +14,7 @@ const words = [
     { word: "proposal", definition: "An act of putting forward or stating something for consideration." },
     { word: "attire", definition: "Clothes." },
     { word: "on account of", definition: "Because of." },
-    { word: "elapse", definition: "(time) to pass." },
+    { word: "elapse", definition: "go by" },
     { word: "catastrophe", definition: "A momentous tragic event ranging from extreme misfortune to utter overthrow or ruin." },
     { word: "exert", definition: "To put forth." },
     { word: "bore", definition: "To pierce with a turning or twisting movement of a tool." },
