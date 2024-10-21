@@ -68,6 +68,7 @@ const words = [
     { word: "absent-minded", definition: "Forgetful." }
 ];
 
+
 // card flipping animation
 function flipCard() {
     const flashcard = document.querySelector('.flashcard');
@@ -171,3 +172,4 @@ document.addEventListener('keydown', (event) => {
 
 // Initial card update
 updateCard();
+
