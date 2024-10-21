@@ -145,8 +145,6 @@ function updateCard() {
     }
 }
 
-// The updateCardContent function remains the same
-
 // Modify the flipCard function to use a callback
 function flipCard(callback) {
     const flashcard = document.querySelector('.flashcard');
