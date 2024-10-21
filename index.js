@@ -126,13 +126,38 @@ function nextCard() {
     updateCard();
 }
 
+// Modify the updateCard function
 function updateCard() {
     const flashcard = document.querySelector('.flashcard');
-    flashcard.classList.remove('flipped'); // Ensure it is not flipped
-    updateCardContent();
+    const isFlipped = flashcard.classList.contains('flipped');
+
+    if (isFlipped) {
+        // If the card is flipped, unflip it first
+        flashcard.classList.remove('flipped');
+        
+        // Wait for the flip animation to complete before updating content
+        setTimeout(() => {
+            updateCardContent();
+        }, 300); // 300ms matches the flip animation duration
+    } else {
+        // If the card is not flipped, update content immediately
+        updateCardContent();
+    }
 }
 
-// Event listeners
+// The updateCardContent function remains the same
+
+// Modify the flipCard function to use a callback
+function flipCard(callback) {
+    const flashcard = document.querySelector('.flashcard');
+    flashcard.classList.toggle('flipped');
+    
+    if (callback) {
+        setTimeout(callback, 300); // Call the callback after the flip animation
+    }
+}
+
+// Modify the event listener for spacebar
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
         flipCard();
