@@ -9,4 +9,6 @@ Approved by US, and about a dozen of students, I guess. Enjoy! <br><br>
 
 v 0.0.1 | 3d Flashcard animation created. Keyboard manipulation created. Clicking added. <br>
 v 0.0.2 | Flashcard mode change created. (Word focused/Definition focused) Github link added; you can now issue us more conveniently :)<br>
-v 0.0.3 | Minor bug fixed. (Card transition when in flipped state error fixed).
+v 0.0.3 | Minor bug fixed. (Card transition when in flipped state error fixed). <br>
+v 0.0.4 | ??? (Issue us)
+
