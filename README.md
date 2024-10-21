@@ -1,6 +1,7 @@
 # Word memorization website (Flashcards)<br>
 Coded with chatGPT, Claude, and with our nice lil' brains<br>
-Approved by US, and about a dozen of students, I guess. Enjoy! <br><br>
+Approved by US, and about a dozen of students, I guess. Enjoy! <br>
+yk-tiger.github.io/word_memorize/ <br><br>
 
 **Example Photo**<br>
 ![image](https://github.com/user-attachments/assets/ee035464-7f66-4f4a-b9e0-c1f4b303f0cf)
