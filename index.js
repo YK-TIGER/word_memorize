@@ -1,6 +1,6 @@
 let currentIndex = 0;
 let mode = 0; // 0: Focus on definition first, 1: Focus on word first
-
+import words from 'words.js'
 //words
 const words = [
     { word: "primeval", definition: "Of or relating to the earliest ages." },
