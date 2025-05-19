@@ -1,4 +1,4 @@
-const words = [
+export const words = [
     { word: "primeval", definition: "Of or relating to the earliest ages." },
     { word: "distinguish", definition: "Discern, to perceive a difference in." },
     { word: "isolated", definition: "Secluded, occurring alone." },
