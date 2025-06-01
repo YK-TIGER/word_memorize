@@ -6,19 +6,21 @@
     <title>영어 단어 외우기</title>
     <link rel="stylesheet" href="index.css">
     <link rel="icon" href="icon.png"/>
+<!--<script src="words.js"></script>-->
+    
 </head>
 <body>
     <div class="container">
         <button id="previous" onclick="previousCard()">&#60;</button>
         <div class="flashcard" onclick="flipCard()">
             <div class="flashcard-inner">
-                <div class="flashcard-front">
-                    <h1 id="definition"></h1>
-                </div>
-                <div class="flashcard-back">
-                    <h1 id="word"></h1>
-                </div>
-            </div>
+    <div class="flashcard-front">
+        <h1 id="word"></h1>
+    </div>
+    <div class="flashcard-back">
+        <h1 id="definition"></h1>
+    </div>
+</div>
         </div>
         <button id="next" onclick="nextCard()">&#62;</button>
     </div>
@@ -39,6 +41,7 @@
         </a>
     </div>
 
-    <script src="index.js"></script>
+<script src="index.js"></script>
+    
 </body>
 </html>

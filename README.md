@@ -13,3 +13,4 @@ v 0.0.2 | Flashcard mode created. (Word focused/Definition focused) Github link 
 v 0.0.3 | Minor bug fixed. (Card transition when in flipped state error fixed). <br>
 v 0.1.0 | Mobile mode is released! Now study not only with your computer but with your phone too LOL <br>
 v 0.1.1 | ??? (Issue us)
+v 1.0.1 | Update New Words! And fixed bugs. <br>
