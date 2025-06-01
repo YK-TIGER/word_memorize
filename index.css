@@ -154,3 +154,9 @@ select {
         justify-content: center;
     }
 }
+.flashcard, .flashcard * {
+  user-select: none;  /* 대부분 브라우저 */
+  -webkit-user-select: none; /* 사파리, 크롬 */
+  -moz-user-select: none; /* 파이어폭스 */
+  -ms-user-select: none;  /* IE */
+}
