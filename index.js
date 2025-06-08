@@ -197,6 +197,29 @@ const words = [
 
 
 
+
+
+function toggleDarkMode(isDark) {
+    if (isDark) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
+window.addEventListener('DOMContentLoaded', () => {
+  // check browser support
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  // add class in body
+  if (prefersDark) {
+    document.body.classList.add('dark-mode');
+    // change toggle check box to enable status
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) toggle.checked = true;
+  }
+});
+
+
 // card flipping animation
 function flipCard() {
     const flashcard = document.querySelector('.flashcard');
